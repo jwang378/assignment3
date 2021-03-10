@@ -14,4 +14,4 @@ csim.o: csim.cpp csim.h
 	$(CC) $(CFLAGS) -c csim.cpp
 
 clean:
-	rm -f *.s *.o *~ depend.mak
+	rm -f *.s *.o *~ csim depend.mak
