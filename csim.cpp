@@ -14,7 +14,7 @@ class csim {
 
   private:
 
-    
+    vector<int> cache;
     
     int sets;
     int blocksPerSet;
@@ -78,10 +78,18 @@ class csim {
         //evict
     }
 
+    void load() {
+
+    }
+
+    void store() {
+
+    }
+
     void createCache(){
       for (int i = 0; i < blocksPerSet; i ++) {
         for (int i2 = 0; i2 < sets; i2 ++) {
-          
+          cache.push_back(-1);
         }
       }
     }
@@ -127,6 +135,34 @@ class csim {
 
     void cacheData() {
       //should take cin data and load write whatever everything and change cycles
+      createCache();
+
+      string s;
+      int index = 0;
+      int action = 0; //0 = save, 1 = load
+      while(cin >> s) {
+        if (index %3 == 0) {
+          if (s.compare("s")) {
+            action = 0;
+          } 
+          if (s.compare("l")) {
+            action = 1;
+          }
+        }
+        if (index %3 == 1) {
+          if (action == 0) {
+
+          } else {
+            //action == 1
+          }
+          //do stuff with mem
+        }
+        if (index %3 == 2) {
+          //do nothing ignore last value
+        }
+        index ++;
+      }
+    
     }
 
     
