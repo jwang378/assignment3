@@ -1,13 +1,9 @@
 #include <string>
 #include <stdlib.h>
-#include <iostream>
-#include <fstream>
 #include <math.h>
 #include <assert.h>
 
 using std::string;
-using std::cout;
-
 class csim {
 
   private:
@@ -21,12 +17,6 @@ class csim {
     int allocateType;
     int throughBackType;
     int evictType;
-
-    int loadHit;
-    int loadMiss;
-    int storeHit;
-    int storeMiss;
-    int cycles;
 
     void assignTypes(){
       if (allocateW == "write-allocate") {
@@ -75,12 +65,6 @@ class csim {
       throughBack = tb;
       evict = ev;
 
-      loadHit = 0;
-      loadMiss = 0;
-      storeHit = 0;
-      storeMiss = 0;
-      cycles = 0;
-
       assignTypes();
     }
 
@@ -90,15 +74,12 @@ class csim {
       double bpb = (double)bytePerBlock;
 
       if ((int)s == s) {
-        cout << "bad"
         exit(1);
       }
       if ((int)bps == bps) {
-        cout << "bad"
         exit(1);
       }
       if ((int)bpb == bpb) {
-        cout << "bad"
         exit(1);
       }
     }    
@@ -107,22 +88,14 @@ class csim {
 };
 int main (int argc, char *argv[]) {
   string evictType;
-  
-  //cout << argc << "\n";
-/*
-  for (int i = 0; i < argc; i ++) {
-    cout << argv[i] << "\n";
-  }
-  */
-
-
-  assert(argc == 6 || argc == 7);
-  if (argc == 6 ) {
+  cout << argc;
+  assert(argc == 5 || argc == 6);
+  if (argc == 5 ) {
     evictType = "fifo";
   } else {
-    evictType = **(argv+6);
+    evictType = argv[5];
   }
-  csim * cache = new csim(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), argv[4], argv[5], evictType);
+  csim * cache = new csim(atoi(argv[0]), atoi(argv[1]), atoi(argv[2]), argv[3], argv[4], evictType);
   cache->checkValid();
 
 
