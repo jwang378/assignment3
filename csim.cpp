@@ -2,15 +2,20 @@
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <math.h>
 #include <assert.h>
+#include <tuple>
 
-using std::string;
-using std::cout;
+
+using namespace std;
 
 class csim {
 
   private:
+
+    
+    
     int sets;
     int blocksPerSet;
     int bytePerBlock;
@@ -65,6 +70,23 @@ class csim {
 
     }   
 
+    void writeValue(){
+        //write
+    }
+
+    void evictValue(){
+        //evict
+    }
+
+    void createCache(){
+      for (int i = 0; i < blocksPerSet; i ++) {
+        for (int i2 = 0; i2 < sets; i2 ++) {
+          
+        }
+      }
+    }
+
+
   public:
 
     csim(int s, int bps, int bpb, string all, string tb, string ev){
@@ -90,18 +112,24 @@ class csim {
       double bpb = (double)bytePerBlock;
 
       if ((int)s == s) {
-        cout << "bad"
+        cout << "bad";
         exit(1);
       }
       if ((int)bps == bps) {
-        cout << "bad"
+        cout << "bad";
         exit(1);
       }
       if ((int)bpb == bpb) {
-        cout << "bad"
+        cout << "bad";
         exit(1);
       }
-    }    
+    } 
+
+    void cacheData() {
+      //should take cin data and load write whatever everything and change cycles
+    }
+
+    
 
   
 };
