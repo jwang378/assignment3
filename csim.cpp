@@ -15,6 +15,7 @@ class csim {
   private:
 
     vector<int> cache;
+    vector<int> usage;
     
     int sets;
     int blocksPerSet;
@@ -86,10 +87,15 @@ class csim {
 
     }
 
+    void readMem(int mem) {
+
+    }
+
     void createCache(){
       for (int i = 0; i < blocksPerSet; i ++) {
         for (int i2 = 0; i2 < sets; i2 ++) {
           cache.push_back(-1);
+          usage.push_back(-1);
         }
       }
     }
@@ -151,7 +157,7 @@ class csim {
         }
         if (index %3 == 1) {
           if (action == 0) {
-
+            
           } else {
             //action == 1
           }
@@ -171,13 +177,6 @@ class csim {
 };
 int main (int argc, char *argv[]) {
   string evictType;
-  
-  //cout << argc << "\n";
-/*
-  for (int i = 0; i < argc; i ++) {
-    cout << argv[i] << "\n";
-  }
-  */
 
 
   assert(argc == 6 || argc == 7);
