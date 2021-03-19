@@ -87,8 +87,8 @@ class csim {
 
     }
 
-    void readMem(int mem) {
-
+    string readMem(string mem) {
+      //turn hex mem into binary
     }
 
     void createCache(){
@@ -111,13 +111,15 @@ class csim {
       throughBack = tb;
       evict = ev;
 
+      
+
       loadHit = 0;
       loadMiss = 0;
       storeHit = 0;
       storeMiss = 0;
       cycles = 0;
 
-      assignTypes();
+      //assignTypes();
     }
 
     void checkValid(){
@@ -125,19 +127,24 @@ class csim {
       double bps = (double)bytePerBlock;
       double bpb = (double)bytePerBlock;
 
-      if ((int)s == s) {
+      if ((int)s != s) {
         cout << "bad";
         exit(1);
       }
-      if ((int)bps == bps) {
+      if ((int)bps != bps) {
         cout << "bad";
         exit(1);
       }
-      if ((int)bpb == bpb) {
+      if ((int)bpb != bpb) {
         cout << "bad";
         exit(1);
       }
+      
     } 
+
+    void printCycles() {
+
+    }
 
     void cacheData() {
       //should take cin data and load write whatever everything and change cycles
@@ -146,6 +153,7 @@ class csim {
       string s;
       int index = 0;
       int action = 0; //0 = save, 1 = load
+     
       while(cin >> s) {
         if (index %3 == 0) {
           if (s.compare("s")) {
@@ -156,6 +164,7 @@ class csim {
           }
         }
         if (index %3 == 1) {
+          String mem = readMem(s);
           if (action == 0) {
             
           } else {
@@ -175,20 +184,24 @@ class csim {
 
   
 };
+
 int main (int argc, char *argv[]) {
   string evictType;
 
 
   assert(argc == 6 || argc == 7);
+  
   if (argc == 6 ) {
     evictType = "fifo";
   } else {
     evictType = **(argv+6);
   }
-  csim * cache = new csim(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), argv[4], argv[5], evictType);
+  csim *cache = new csim(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), argv[4], argv[5], evictType);
+  
   cache->checkValid();
-
-
+ 
+  cache->cacheData();
+  
 
   return 0;  
 }
